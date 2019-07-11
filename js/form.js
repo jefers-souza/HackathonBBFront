@@ -6,11 +6,10 @@ botaoAdicionar.addEventListener("click", function(event) {//adicionei no evento 
 //Adicionando os valores coletados do form nas variaveis
     var pessoa = ObtemPessoaDoFormulario(form);
     var pessoaTr = montaTr(pessoa);
+
     var erros = validaPessoa(pessoa);
-
-    if (erros.length > 0) {
-        exibeMensagensDeErro(erros);
-
+    if (erros.length > 0) {  //se o array for maior que zero teve erro
+        exibeMensagensDeErro(erros); //chamo a função exibe erro
         return;
     }
 
@@ -20,7 +19,7 @@ botaoAdicionar.addEventListener("click", function(event) {//adicionei no evento 
     form.reset();
 
     var mensagensErro = document.querySelector("#mensagens-erro");
-    mensagensErro.innerHTML = "";
+    mensagensErro.innerHTML = ""; //Quando adiciono um usuario com sucesso eu limpo a minha Ul
 });
 //Criando o Objeto pessoa
 function ObtemPessoaDoFormulario(form) {
@@ -56,10 +55,10 @@ function montaTd(dado, classe) {
     return td;
 }
 function validaPessoa(pessoa) {
-    var erros = [];
+    var erros = []; //retorei um array de erros
 
     if (!validaNome(pessoa.nome)) {
-        erros.push("O nome não pode ser em branco");
+        erros.push("O nome não pode ser em branco"); //adiciono dentro do array a string
     }
 
     if (pessoa.matricula.length == 0) {
@@ -78,13 +77,13 @@ function validaPessoa(pessoa) {
         erros.push("A sala não pode ser em branco");
     }
 
-    return erros;
+
+    return erros; // retorno meu array com todos os erros
 }
 function exibeMensagensDeErro(erros) {
-    var ul = document.querySelector("#mensagens-erro");
-    ul.innerHTML = "";
-
-    erros.forEach(function(erro) {
+    var ul = document.querySelector("#mensagens-erro"); //Ul do meu HTML
+    ul.innerHTML = ""; //Controla a minha Ul apagando a mensagem sempre que chamada de novo, Para a mensagem não ficar fixa depois que eu preencho
+    erros.forEach(function(erro) { // for para criar uma li, alterar o valor dela, e colocar ela na tabela
         var li = document.createElement("li");
         li.textContent = erro;
         ul.appendChild(li);
