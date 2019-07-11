@@ -56,6 +56,7 @@ function montaTd(dado, classe) {
 }
 function validaPessoa(pessoa) {
     var erros = []; //retorei um array de erros
+   // console.log(" >>>>>>>> " + pessoa.horario[3][4]);
 
     if (!validaNome(pessoa.nome)) {
         erros.push("O nome não pode ser em branco"); //adiciono dentro do array a string
@@ -69,8 +70,14 @@ function validaPessoa(pessoa) {
         erros.push("Matricula Inválida!");
     }
 
-    if (pessoa.horario.length == 0) {
-        erros.push("O horário não pode ser em branco");
+    if (pessoa.horario[3] != "3" && pessoa.horario[3] != "0") {
+        console.log(" >>>>>>>> " + pessoa.horario[3]);
+        erros.push("deu ruim pai");
+    }
+
+    if (pessoa.horario[4] != "0") {
+        console.log(" >>>>>>>> " + pessoa.horario[4]);
+        erros.push("deu ruim mae");
     }
 
     if (pessoa.sala.length == 0) {
